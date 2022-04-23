@@ -60,7 +60,7 @@ AppAsset::register($this);
                 ]],
                 Yii::$app->user->isGuest ? (['label' => 'Админка']) :
                     ['label' => 'Таблицы', 'items' => [
-                        ['label' => 'Бригады', 'url' => ['/', 'tag' => 'tab1']],
+                        ['label' => 'Бригады', 'url' => ['admin/brigade/index', 'tag' => 'tab1']],
                         ['label' => 'Работа бригад', 'url' => ['/', 'tag' => 'tab2']],
                         ['label' => 'Категории изделий', 'url' => ['/', 'tag' => 'tab3']],
                         ['label' => 'Компании', 'url' => ['/', 'tag' => 'tab4']],
