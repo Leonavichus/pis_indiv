@@ -15,27 +15,6 @@ use app\models\User;
 
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function actionSay($message = 'Привет')
-    {
-        return $this->render('say', ['message' => $message]);
-    }
-
-    public function actionEntry()
-    {
-        $model = new EntryForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            // данные в $model удачно проверены
-            // делаем что-то полезное с $model ...
-            return $this->render('entry-confirm', ['model' => $model]);
-        } else {
-            // либо страница отображается первый раз, либо есть ошибка в данных
-            return $this->render('entry', ['model' => $model]);
-        }
-    }
-
     public function behaviors()
     {
         return [
@@ -153,6 +132,11 @@ class SiteController extends Controller
         return $this->render('contact', [
             'model' => $model,
         ]);
+    }
+
+    public function actionAdmin()
+    {
+        return $this->render('admin');
     }
 
     /**
