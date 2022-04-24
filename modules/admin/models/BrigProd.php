@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "brig_prod".
  *
+ * @property int $id
  * @property int $id_product
  * @property int $id_workers
  *
@@ -42,6 +43,7 @@ class BrigProd extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'id_product' => 'Id Product',
             'id_workers' => 'Id Workers',
         ];

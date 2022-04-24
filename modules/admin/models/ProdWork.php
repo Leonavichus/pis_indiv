@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "prod_work".
  *
+ * @property int $id
  * @property int $id_product
  * @property int $id_work
  * @property int $id_sector
@@ -45,6 +46,7 @@ class ProdWork extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'id_product' => 'Id Product',
             'id_work' => 'Id Work',
             'id_sector' => 'Id Sector',
