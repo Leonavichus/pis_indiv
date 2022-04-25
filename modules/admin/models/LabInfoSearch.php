@@ -1,0 +1,71 @@
+<?php
+
+namespace app\modules\admin\models;
+
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\modules\admin\models\LabInfo;
+
+/**
+ * LabInfoSearch represents the model behind the search form of `app\modules\admin\models\LabInfo`.
+ */
+class LabInfoSearch extends LabInfo
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'id_product', 'id_quipment', 'id_workers', 'id_lab'], 'integer'],
+            [['date_test'], 'safe'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = LabInfo::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'id_product' => $this->id_product,
+            'id_quipment' => $this->id_quipment,
+            'id_workers' => $this->id_workers,
+            'id_lab' => $this->id_lab,
+            'date_test' => $this->date_test,
+        ]);
+
+        return $dataProvider;
+    }
+}

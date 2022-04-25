@@ -7,25 +7,25 @@ use yii\helpers\Url; ?>
     <div class="row" style="display: flex;">
         <div class="column">
             <ul>
-                <li><a href="<?php echo Url::to(['brigasssssde/index']); ?>" class="btn btn-dark">Бригады</a></li>
-                <li><a href="<?php echo Url::to(['books/index']); ?>" class="btn btn-dark">Работа бригад</a></li>
+                <li><a href="<?php echo Url::to(['brigade/index']); ?>" class="btn btn-dark">Бригады</a></li>
+                <li><a href="<?php echo Url::to(['brig-prod/index']); ?>" class="btn btn-dark">Работа бригад</a></li>
                 <li><a href="<?php echo Url::to(['category/index']); ?>" class="btn btn-dark">Категории изделий</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Компании</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Лаборатории</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Информация о лабораториях</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Инструменты в лаборатории</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Должности</a></li>
+                <li><a href="<?php echo Url::to(['company/index']); ?>" class="btn btn-dark">Компании</a></li>
+                <li><a href="<?php echo Url::to(['laboratory/index']); ?>" class="btn btn-dark">Лаборатории</a></li>
+                <li><a href="<?php echo Url::to(['lab-info/index']); ?>" class="btn btn-dark">Информация о лабораториях</a></li>
+                <li><a href="<?php echo Url::to(['lab-quipment/index']); ?>" class="btn btn-dark">Инструменты в лаборатории</a></li>
+                <li><a href="<?php echo Url::to(['post/index']); ?>" class="btn btn-dark">Должности</a></li>
             </ul>
         </div>
         <div class="column">
             <ul>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Изделия</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Участки</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Рабочие</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Работы по изделию</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Информация о работе по изделию</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Цехи</a></li>
-                <li><a href="<?php echo Url::to(['genre/index']); ?>" class="btn btn-dark">Журнал</a></li>
+                <li><a href="<?php echo Url::to(['product/index']); ?>" class="btn btn-dark">Изделия</a></li>
+                <li><a href="<?php echo Url::to(['sector/index']); ?>" class="btn btn-dark">Участки</a></li>
+                <li><a href="<?php echo Url::to(['workers/index']); ?>" class="btn btn-dark">Рабочие</a></li>
+                <li><a href="<?php echo Url::to(['work-prod/index']); ?>" class="btn btn-dark">Работы по изделию</a></li>
+                <li><a href="<?php echo Url::to(['prod-work/index']); ?>" class="btn btn-dark">Информация о работе по изделию</a></li>
+                <li><a href="<?php echo Url::to(['workshop/index']); ?>" class="btn btn-dark">Цехи</a></li>
+                <li><a href="<?php echo Url::to(['log/index']); ?>" class="btn btn-dark">Журнал</a></li>
                 <br><br>
             </ul>
         </div>

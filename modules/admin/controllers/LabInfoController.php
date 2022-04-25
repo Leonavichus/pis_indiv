@@ -2,17 +2,16 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Category;
-use app\modules\admin\models\CategorySearch;
+use app\modules\admin\models\LabInfo;
+use app\modules\admin\models\LabInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\modules\admin\controllers\AppAdminController;
 
 /**
- * CategoryController implements the CRUD actions for Category model.
+ * LabInfoController implements the CRUD actions for LabInfo model.
  */
-class CategoryController extends AppAdminController
+class LabInfoController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,13 +32,13 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Lists all Category models.
+     * Lists all LabInfo models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
+        $searchModel = new LabInfoSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -49,7 +48,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single LabInfo model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -62,13 +61,13 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new LabInfo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new LabInfo();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -84,7 +83,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing LabInfo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -104,7 +103,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing LabInfo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -118,15 +117,15 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the LabInfo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Category the loaded model
+     * @return LabInfo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne(['id' => $id])) !== null) {
+        if (($model = LabInfo::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

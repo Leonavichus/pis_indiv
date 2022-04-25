@@ -2,17 +2,16 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Category;
-use app\modules\admin\models\CategorySearch;
+use app\modules\admin\models\Workers;
+use app\modules\admin\models\WorkersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\modules\admin\controllers\AppAdminController;
 
 /**
- * CategoryController implements the CRUD actions for Category model.
+ * WorkersController implements the CRUD actions for Workers model.
  */
-class CategoryController extends AppAdminController
+class WorkersController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,13 +32,13 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Lists all Category models.
+     * Lists all Workers models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
+        $searchModel = new WorkersSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -49,7 +48,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single Workers model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -62,13 +61,13 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new Workers model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Workers();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -84,7 +83,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing Workers model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -104,7 +103,7 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing Workers model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -118,15 +117,15 @@ class CategoryController extends AppAdminController
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the Workers model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Category the loaded model
+     * @return Workers the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne(['id' => $id])) !== null) {
+        if (($model = Workers::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
