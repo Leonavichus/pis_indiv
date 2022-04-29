@@ -7,11 +7,12 @@ use app\modules\admin\models\LaboratorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * LaboratoryController implements the CRUD actions for Laboratory model.
  */
-class LaboratoryController extends Controller
+class LaboratoryController extends AppAdminController
 {
     /**
      * @inheritDoc

@@ -7,11 +7,12 @@ use app\modules\admin\models\CompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
  */
-class CompanyController extends Controller
+class CompanyController extends AppAdminController
 {
     /**
      * @inheritDoc

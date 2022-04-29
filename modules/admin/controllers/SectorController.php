@@ -7,11 +7,12 @@ use app\modules\admin\models\SectorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * SectorController implements the CRUD actions for Sector model.
  */
-class SectorController extends Controller
+class SectorController extends AppAdminController
 {
     /**
      * @inheritDoc

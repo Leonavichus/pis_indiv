@@ -7,11 +7,12 @@ use app\modules\admin\models\ProdWorkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * ProdWorkController implements the CRUD actions for ProdWork model.
  */
-class ProdWorkController extends Controller
+class ProdWorkController extends AppAdminController
 {
     /**
      * @inheritDoc

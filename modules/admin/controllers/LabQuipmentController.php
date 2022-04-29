@@ -7,11 +7,12 @@ use app\modules\admin\models\LabQuipmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * LabQuipmentController implements the CRUD actions for LabQuipment model.
  */
-class LabQuipmentController extends Controller
+class LabQuipmentController extends AppAdminController
 {
     /**
      * @inheritDoc

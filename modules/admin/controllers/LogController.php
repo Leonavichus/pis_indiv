@@ -7,11 +7,12 @@ use app\modules\admin\models\LogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * LogController implements the CRUD actions for Log model.
  */
-class LogController extends Controller
+class LogController extends AppAdminController
 {
     /**
      * @inheritDoc

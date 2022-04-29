@@ -7,11 +7,12 @@ use app\modules\admin\models\WorkProdSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * WorkProdController implements the CRUD actions for WorkProd model.
  */
-class WorkProdController extends Controller
+class WorkProdController extends AppAdminController
 {
     /**
      * @inheritDoc

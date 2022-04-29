@@ -7,11 +7,12 @@ use app\modules\admin\models\WorkshopSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * WorkshopController implements the CRUD actions for Workshop model.
  */
-class WorkshopController extends Controller
+class WorkshopController extends AppAdminController
 {
     /**
      * @inheritDoc

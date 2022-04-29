@@ -7,11 +7,12 @@ use app\modules\admin\models\WorkersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admin\controllers\AppAdminController;
 
 /**
  * WorkersController implements the CRUD actions for Workers model.
  */
-class WorkersController extends Controller
+class WorkersController extends AppAdminController
 {
     /**
      * @inheritDoc
