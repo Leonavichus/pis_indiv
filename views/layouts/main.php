@@ -39,32 +39,32 @@ AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav'],
             'items' => [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'Главная', 'url' => ['/site/index']],
+                ['label' => 'О нас', 'url' => ['/site/about']],
+                ['label' => 'Контакты', 'url' => ['/site/contact']],
                 ['label' => 'Запросы', 'items' => [
-                    ['label' => 'Запрос 1', 'url' => ['/', 'tag' => 'req1']],
-                    ['label' => 'Запрос 2', 'url' => ['/', 'tag' => 'req2']],
-                    ['label' => 'Запрос 3', 'url' => ['/', 'tag' => 'req3']],
-                    ['label' => 'Запрос 4', 'url' => ['/', 'tag' => 'req4']],
-                    ['label' => 'Запрос 5', 'url' => ['/', 'tag' => 'req5']],
-                    ['label' => 'Запрос 6', 'url' => ['/', 'tag' => 'req6']],
-                    ['label' => 'Запрос 7', 'url' => ['/', 'tag' => 'req7']],
-                    ['label' => 'Запрос 8', 'url' => ['/', 'tag' => 'req8']],
-                    ['label' => 'Запрос 9', 'url' => ['/', 'tag' => 'req9']],
-                    ['label' => 'Запрос 10', 'url' => ['/', 'tag' => 'req10']],
-                    ['label' => 'Запрос 11', 'url' => ['/', 'tag' => 'req11']],
-                    ['label' => 'Запрос 12', 'url' => ['/', 'tag' => 'req12']],
-                    ['label' => 'Запрос 13', 'url' => ['/', 'tag' => 'req13']],
-                    ['label' => 'Запрос 14', 'url' => ['/', 'tag' => 'req14']],
+                    ['label' => 'Запрос 1', 'url' => ['/request/req1', 'tag' => 'req1']],
+                    ['label' => 'Запрос 2', 'url' => ['/request/req2', 'tag' => 'req2']],
+                    ['label' => 'Запрос 3', 'url' => ['/request/req3', 'tag' => 'req3']],
+                    ['label' => 'Запрос 4', 'url' => ['/request/req4', 'tag' => 'req4']],
+                    ['label' => 'Запрос 5', 'url' => ['/request/req5', 'tag' => 'req5']],
+                    ['label' => 'Запрос 6', 'url' => ['/request/req6', 'tag' => 'req6']],
+                    ['label' => 'Запрос 7', 'url' => ['/request/req7', 'tag' => 'req7']],
+                    ['label' => 'Запрос 8', 'url' => ['/request/req8', 'tag' => 'req8']],
+                    ['label' => 'Запрос 9', 'url' => ['/request/req9', 'tag' => 'req9']],
+                    ['label' => 'Запрос 10', 'url' => ['/request/req10', 'tag' => 'req10']],
+                    ['label' => 'Запрос 11', 'url' => ['/request/req11', 'tag' => 'req11']],
+                    ['label' => 'Запрос 12', 'url' => ['/request/req12', 'tag' => 'req12']],
+                    ['label' => 'Запрос 13', 'url' => ['/request/req13', 'tag' => 'req13']],
+                    ['label' => 'Запрос 14', 'url' => ['/request/req14', 'tag' => 'req14']],
                 ]],
                 Yii::$app->user->isGuest ? (['label' => 'Админка']) : ['label' => 'Админка', 'url' => ['/site/admin']],
-                ['label' => 'Sign up', 'url' => ['/site/signup']],
-                Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Регистрация', 'url' => ['/site/signup']],
+                Yii::$app->user->isGuest ? (['label' => 'Войти', 'url' => ['/site/login']]
                 ) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        'Выйти (' . Yii::$app->user->identity->username . ')',
                         ['class' => 'btn btn-link logout']
                     )
                     . Html::endForm()
