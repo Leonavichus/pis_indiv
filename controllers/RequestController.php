@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\db\Query;
+
+use app\models\Req4Form;
 
 class RequestController extends Controller
 {
@@ -21,6 +24,9 @@ class RequestController extends Controller
 
     public function actionReq4()
     {
+        $model = new Req4Form();
+        $query = (new Query())
+            ->select('');
     }
 
     public function actionReq5()
