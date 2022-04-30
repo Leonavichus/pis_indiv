@@ -25,6 +25,7 @@ class RequestController extends Controller
 {
     public function actionReq1()
     {
+        //1.Получить перечень видов изделий отдельной категории и в целом, собираемых указанным цехом, предприятием. 
         $model = new Req1Form();
         $query = null;
         if (!$model->load(Yii::$app->request->post())) {
@@ -50,10 +51,12 @@ class RequestController extends Controller
         ]);
     }
 
+    //2.Получить число и перечень изделий отдельной категории и в целом, собранных указанным цехом, участком, предприятием в целом за определенный отрезок времени.
     public function actionReq2()
     {
     }
 
+    //3.Получить данные о кадровом составе цеха, предприятия в целом и по указанным категориям инженерно-технического персонала и рабочих.
     public function actionReq3()
     {
         $model = new Req3Form();
@@ -80,10 +83,12 @@ class RequestController extends Controller
         ]);
     }
 
+    //4.Получить число и перечень участков указанного цеха, предприятия в целом и их начальников. 
     public function actionReq4()
     {
     }
 
+    //5.Получить перечень работ, которые проходит указанное изделие.
     public function actionReq5()
     {
         $model = new Req5Form();
@@ -106,6 +111,7 @@ class RequestController extends Controller
         ]);
     }
 
+    //6.Получить состав бригад указанного участка, цеха. 
     public function actionReq6()
     {
         $model = new Req6Form();
@@ -129,6 +135,7 @@ class RequestController extends Controller
         ]);
     }
 
+    //7.Получить перечень мастеров указанного участка, цеха. 
     public function actionReq7()
     {
         $model = new Req7Form();
@@ -153,6 +160,7 @@ class RequestController extends Controller
         ]);
     }
 
+    //8.Получить перечень изделий отдельной категории и в целом, собираемых в настоящий момент указанным участком, цехом, предприятием. 
     public function actionReq8()
     {
         $model = new Req8Form();
@@ -181,46 +189,46 @@ class RequestController extends Controller
         ]);
     }
 
+    //9.Получить состав бригад, участвующих в сборке указанного изделия. 
     public function actionReq9()
     {
         $model = new Req9Form();
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->product = '%';
+        }
+
         $query = (new Query())
             ->select('');
+        $search = $query->all();
+
+        return $this->render('req9', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
+    //10.Получить перечень испытательных лабораторий, участвующих в испытаниях некоторого конкретного изделия. 
     public function actionReq10()
     {
-        $model = new Req10Form();
-        $query = (new Query())
-            ->select('');
     }
 
+    //11.Получить перечень изделий отдельной категории и в целом, проходивших испытание в указанной лаборатории за определенный период. 
     public function actionReq11()
     {
-        $model = new Req11Form();
-        $query = (new Query())
-            ->select('');
     }
 
+    //12.Получить перечень испытателей, участвующих в испытаниях указанного изделия, изделий отдельной категории и в целом в указанной лаборатории за определенный период. 
     public function actionReq12()
     {
-        $model = new Req12Form();
-        $query = (new Query())
-            ->select('');
     }
 
-
+    //13.Получить состав оборудования, использовавшегося при испытании указанного изделия, изделий отдельной категории и в целом в указанной лаборатории за определенный период. 
     public function actionReq13()
     {
-        $model = new Req13Form();
-        $query = (new Query())
-            ->select('');
     }
 
+    //14.Получить число и перечень изделий отдельной категории и в целом, собираемых указанным цехом, участком, предприятием в настоящее время. 
     public function actionReq14()
     {
-        $model = new Req14Form();
-        $query = (new Query())
-            ->select('');
     }
 }
