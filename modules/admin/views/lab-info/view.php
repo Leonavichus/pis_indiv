@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_quipment',
             'id_workers',
             'id_lab',
-            'date_test',
+            'date_start',
+            'date_end',
         ],
     ]) ?>
 

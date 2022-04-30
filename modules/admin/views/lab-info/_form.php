@@ -20,7 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_lab')->textInput() ?>
 
-    <?= $form->field($model, 'date_test')->textInput() ?>
+    <?= $form->field($model, 'date_start')->textInput() ?>
+
+    <?= $form->field($model, 'date_end')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

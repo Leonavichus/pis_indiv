@@ -5,7 +5,6 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use app\modules\admin\models\LabInfo;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\LabInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -35,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_quipment',
             'id_workers',
             'id_lab',
-            //'date_test',
+            //'date_start',
+            //'date_end',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, LabInfo $model, $key, $index, $column) {

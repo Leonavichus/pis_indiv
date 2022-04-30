@@ -12,7 +12,8 @@ use Yii;
  * @property int $id_quipment
  * @property int $id_workers
  * @property int $id_lab
- * @property string $date_test
+ * @property string|null $date_start
+ * @property string|null $date_end
  *
  * @property Laboratory $lab
  * @property Product $product
@@ -35,9 +36,9 @@ class LabInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_product', 'id_quipment', 'id_workers', 'id_lab', 'date_test'], 'required'],
+            [['id_product', 'id_quipment', 'id_workers', 'id_lab'], 'required'],
             [['id_product', 'id_quipment', 'id_workers', 'id_lab'], 'integer'],
-            [['date_test'], 'safe'],
+            [['date_start', 'date_end'], 'safe'],
             [['id_quipment'], 'exist', 'skipOnError' => true, 'targetClass' => LabQuipment::className(), 'targetAttribute' => ['id_quipment' => 'id']],
             [['id_lab'], 'exist', 'skipOnError' => true, 'targetClass' => Laboratory::className(), 'targetAttribute' => ['id_lab' => 'id']],
             [['id_workers'], 'exist', 'skipOnError' => true, 'targetClass' => Workers::className(), 'targetAttribute' => ['id_workers' => 'id']],
@@ -56,7 +57,8 @@ class LabInfo extends \yii\db\ActiveRecord
             'id_quipment' => 'Id Quipment',
             'id_workers' => 'Id Workers',
             'id_lab' => 'Id Lab',
-            'date_test' => 'Date Test',
+            'date_start' => 'Date Start',
+            'date_end' => 'Date End',
         ];
     }
 

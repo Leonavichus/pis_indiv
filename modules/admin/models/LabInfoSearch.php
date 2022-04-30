@@ -18,7 +18,7 @@ class LabInfoSearch extends LabInfo
     {
         return [
             [['id', 'id_product', 'id_quipment', 'id_workers', 'id_lab'], 'integer'],
-            [['date_test'], 'safe'],
+            [['date_start', 'date_end'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class LabInfoSearch extends LabInfo
             'id_quipment' => $this->id_quipment,
             'id_workers' => $this->id_workers,
             'id_lab' => $this->id_lab,
-            'date_test' => $this->date_test,
+            'date_start' => $this->date_start,
+            'date_end' => $this->date_end,
         ]);
 
         return $dataProvider;

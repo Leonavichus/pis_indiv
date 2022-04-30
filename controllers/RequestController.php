@@ -196,9 +196,13 @@ class RequestController extends Controller
         if (!$model->load(Yii::$app->request->post())) {
             $model->product = '%';
         }
-
         $query = (new Query())
-            ->select('');
+            ->select('brigade.name as bname, workers.fullname, product.name as pname')
+            ->from('brig_prod')
+            ->innerJoin('workers', 'workers.id = brig_prod.id_workers')
+            ->innerJoin('product', 'product.id = brig_prod.id_product')
+            ->innerJoin('brigade', 'brigade.id = workers.id_brigade')
+            ->where(['like', 'brig_prod.id_product', $model->product, false]);
         $search = $query->all();
 
         return $this->render('req9', [
@@ -210,11 +214,50 @@ class RequestController extends Controller
     //10.Получить перечень испытательных лабораторий, участвующих в испытаниях некоторого конкретного изделия. 
     public function actionReq10()
     {
+        $model = new Req10Form();
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->product = '%';
+        }
+        $query = (new Query())
+            ->select('laboratory.name as lname, product.name as pname')
+            ->from('lab_info')
+            ->innerJoin('laboratory', 'laboratory.id = lab_info.id_lab')
+            ->innerJoin('product', 'product.id = lab_info.id_product')
+            ->where(['like', 'lab_info.id_product', $model->product, false]);
+        $search = $query->all();
+
+        return $this->render('req10', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
     //11.Получить перечень изделий отдельной категории и в целом, проходивших испытание в указанной лаборатории за определенный период. 
     public function actionReq11()
     {
+        $model = new Req11Form();
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->cat = '%';
+            $model->lab = '%';
+            $model->sdate = '1970-01-01';
+            $model->edate = '9999-12-31';
+        }
+        $query = (new \yii\db\Query())
+            ->select('product.name,category.name,laboratory.name as lname,labtests.test_date')
+            ->from('labtests')
+            ->leftJoin('labs', 'labs.id=labtests.id_lab')
+            ->leftJoin('details', 'details.id=labtests.id_d')
+            ->leftJoin('categories', 'categories.id=details.id_cat')
+            ->where(['like', 'details.id_cat', $model->cat, false])
+            ->andWhere(['like', 'labs.id', $model->lab, false])
+            ->andWhere(['>', 'labtests.test_date', $model->sdate])
+            ->andWhere(['<', 'labtests.test_date', $model->edate]);
+        $search = $query->all();
+
+        return $this->render('req11', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
     //12.Получить перечень испытателей, участвующих в испытаниях указанного изделия, изделий отдельной категории и в целом в указанной лаборатории за определенный период. 
