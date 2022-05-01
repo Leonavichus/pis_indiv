@@ -237,21 +237,21 @@ class RequestController extends Controller
     {
         $model = new Req11Form();
         if (!$model->load(Yii::$app->request->post())) {
-            $model->cat = '%';
-            $model->lab = '%';
+            $model->category = '%';
+            $model->laboratory = '%';
             $model->sdate = '1970-01-01';
             $model->edate = '9999-12-31';
         }
         $query = (new \yii\db\Query())
-            ->select('product.name,category.name,laboratory.name as lname,labtests.test_date')
-            ->from('labtests')
-            ->leftJoin('labs', 'labs.id=labtests.id_lab')
-            ->leftJoin('details', 'details.id=labtests.id_d')
-            ->leftJoin('categories', 'categories.id=details.id_cat')
-            ->where(['like', 'details.id_cat', $model->cat, false])
-            ->andWhere(['like', 'labs.id', $model->lab, false])
-            ->andWhere(['>', 'labtests.test_date', $model->sdate])
-            ->andWhere(['<', 'labtests.test_date', $model->edate]);
+            ->select('product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
+            ->from('lab_info')
+            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
+            ->leftJoin('product', 'product.id=lab_info.id_product')
+            ->leftJoin('category', 'category.id=product.id_category')
+            ->where(['like', 'product.id_category', $model->category, false])
+            ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
+            ->andWhere(['>', 'lab_info.date_start', $model->sdate])
+            ->andWhere(['<', 'lab_info.date_end', $model->edate]);
         $search = $query->all();
 
         return $this->render('req11', [
@@ -263,11 +263,61 @@ class RequestController extends Controller
     //12.Получить перечень испытателей, участвующих в испытаниях указанного изделия, изделий отдельной категории и в целом в указанной лаборатории за определенный период. 
     public function actionReq12()
     {
+        $model = new Req12Form();
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->product = '%';
+            $model->category = '%';
+            $model->laboratory = '%';
+            $model->sdate = '1970-01-01';
+            $model->edate = '9999-12-31';
+        }
+        $query = (new \yii\db\Query())
+            ->select('workers.fullname, product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
+            ->from('lab_info')
+            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
+            ->leftJoin('product', 'product.id=lab_info.id_product')
+            ->leftJoin('category', 'category.id=product.id_category')
+            ->leftJoin('workers', 'workers.id=lab_info.id_workers')
+            ->where(['like', 'product.id_category', $model->category, false])
+            ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
+            ->andWhere(['>', 'lab_info.date_start', $model->sdate])
+            ->andWhere(['<', 'lab_info.date_end', $model->edate]);
+        $search = $query->all();
+
+        return $this->render('req12', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
     //13.Получить состав оборудования, использовавшегося при испытании указанного изделия, изделий отдельной категории и в целом в указанной лаборатории за определенный период. 
     public function actionReq13()
     {
+        $model = new Req13Form();
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->product = '%';
+            $model->category = '%';
+            $model->laboratory = '%';
+            $model->sdate = '1970-01-01';
+            $model->edate = '9999-12-31';
+        }
+        $query = (new \yii\db\Query())
+            ->select('lab_quipment.name as qname, product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
+            ->from('lab_info')
+            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
+            ->leftJoin('product', 'product.id=lab_info.id_product')
+            ->leftJoin('category', 'category.id=product.id_category')
+            ->leftJoin('lab_quipment', 'lab_quipment.id=lab_info.id_quipment')
+            ->where(['like', 'product.id_category', $model->category, false])
+            ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
+            ->andWhere(['>', 'lab_info.date_start', $model->sdate])
+            ->andWhere(['<', 'lab_info.date_end', $model->edate]);
+        $search = $query->all();
+
+        return $this->render('req13', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
     //14.Получить число и перечень изделий отдельной категории и в целом, собираемых указанным цехом, участком, предприятием в настоящее время. 
