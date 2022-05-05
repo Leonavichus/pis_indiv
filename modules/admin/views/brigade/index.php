@@ -10,7 +10,7 @@ use app\modules\admin\models\Brigade;
 /* @var $searchModel app\modules\admin\models\BrigadeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Brigades';
+$this->title = 'Бригады';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="brigade-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Brigade', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 

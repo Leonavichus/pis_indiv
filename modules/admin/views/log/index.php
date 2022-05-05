@@ -32,10 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'id_product',
+            'count',
             'id_sector',
             'date_start',
             'date_end',
-            //'isReady',
+            'isReady',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Log $model, $key, $index, $column) {

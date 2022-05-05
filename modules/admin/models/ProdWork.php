@@ -47,9 +47,9 @@ class ProdWork extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'id_work' => 'Id Work',
-            'id_sector' => 'Id Sector',
+            'id_product' => 'Изделие',
+            'id_work' => 'Работа',
+            'id_sector' => 'Участок',
         ];
     }
 

@@ -53,12 +53,12 @@ class LabInfo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'id_quipment' => 'Id Quipment',
-            'id_workers' => 'Id Workers',
-            'id_lab' => 'Id Lab',
-            'date_start' => 'Date Start',
-            'date_end' => 'Date End',
+            'id_product' => 'Изделие',
+            'id_quipment' => 'Оборудование',
+            'id_workers' => 'Сотрудник',
+            'id_lab' => 'Лаборатория',
+            'date_start' => 'Дата начала',
+            'date_end' => 'Дата конца',
         ];
     }
 

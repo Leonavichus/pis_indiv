@@ -44,8 +44,8 @@ class Workshop extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'id_company' => 'Id Company',
+            'name' => 'Имя',
+            'id_company' => 'Компания',
         ];
     }
 

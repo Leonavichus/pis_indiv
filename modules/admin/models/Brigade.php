@@ -42,8 +42,8 @@ class Brigade extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Имя',
+            'description' => 'Описание',
         ];
     }
 

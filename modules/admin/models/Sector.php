@@ -45,8 +45,8 @@ class Sector extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'id_workshop' => 'Id Workshop',
+            'name' => 'Имя',
+            'id_workshop' => 'Цех',
         ];
     }
 

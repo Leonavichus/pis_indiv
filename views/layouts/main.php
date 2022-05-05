@@ -58,7 +58,7 @@ AppAsset::register($this);
                     ['label' => 'Запрос 13', 'url' => ['/request/req13', 'tag' => 'req13']],
                     ['label' => 'Запрос 14', 'url' => ['/request/req14', 'tag' => 'req14']],
                 ]],
-                Yii::$app->user->isGuest ? (['label' => false]) : ['label' => 'Админка', 'url' => ['/site/admin']],
+                Yii::$app->user->isGuest ? (['label' => false]) : ['label' => 'Админка', 'url' => ['admin/default/index']],
                 ['label' => 'Регистрация', 'url' => ['/site/signup']],
                 Yii::$app->user->isGuest ? (['label' => 'Войти', 'url' => ['/site/login']]
                 ) : ('<li>'

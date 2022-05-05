@@ -20,6 +20,7 @@ use app\models\Req11Form;
 use app\models\Req12Form;
 use app\models\Req13Form;
 use app\models\Req14Form;
+use app\modules\admin\models\Sector;
 
 class RequestController extends Controller
 {
@@ -54,6 +55,33 @@ class RequestController extends Controller
     //2.Получить число и перечень изделий отдельной категории и в целом, собранных указанным цехом, участком, предприятием в целом за определенный отрезок времени.
     public function actionReq2()
     {
+        $model = new Req2Form();
+        $query = null;
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->category = '%';
+            $model->workshop = '%';
+            $model->company = '%';
+            $model->sdate = '1970-01-01';
+            $model->edate = '9999-12-31';
+        }
+        $query = (new Query())
+            ->select('product.name as pname, log.count, category.name as cname, sector.name as sname, workshop.name as wname, company.name as coname, log.date_start, log.date_end')
+            ->from('log')
+            ->innerJoin('product', 'log.id_product = product.id')
+            ->innerJoin('category', 'product.id_category = category.id')
+            ->innerJoin('sector', 'sector.id = log.id_sector')
+            ->innerJoin('workshop', 'workshop.id = sector.id_workshop')
+            ->innerJoin('company', 'company.id = workshop.id_company')
+            ->where(['like', 'product.id_category', $model->category, false])
+            ->andWhere(['like', 'sector.id_workshop', $model->workshop, false])
+            ->andWhere(['like', 'workshop.id_company', $model->company, false])
+            ->andWhere(['>', 'log.date_start', $model->sdate])
+            ->andWhere(['<', 'log.date_end', $model->edate]);
+        $search = $query->all();
+        return $this->render('req2', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 
     //3.Получить данные о кадровом составе цеха, предприятия в целом и по указанным категориям инженерно-технического персонала и рабочих.
@@ -86,6 +114,32 @@ class RequestController extends Controller
     //4.Получить число и перечень участков указанного цеха, предприятия в целом и их начальников. 
     public function actionReq4()
     {
+        $model = new Req4Form();
+        $query = null;
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->workshop = '%';
+            $model->company = '%';
+        }
+
+        $query = (new Query())
+            ->select('workshop.name as wname, count(workshop.id) as spcount, company.name as cname, workers.fullname')->distinct()
+            ->from('workshop')
+            ->innerJoin('sector', 'workshop.id = sector.id_workshop')
+            ->innerJoin('company', 'workshop.id_company = company.id')
+            ->innerJoin('workers', 'workers.id_sector = sector.id')
+            ->where(['like', 'workers.id_post', 9, false])
+            ->andWhere(['like', 'company.id', $model->company, false])
+            ->andWhere(['like', 'workshop.id', $model->workshop, false])
+            ->groupBy('workshop.name');
+
+        $helpquery = Sector::find()->all();
+        $search = $query->all();
+
+        return $this->render('req4', [
+            'search' => $search,
+            'model' => $model,
+            'support' => $helpquery,
+        ]);
     }
 
     //5.Получить перечень работ, которые проходит указанное изделие.
@@ -95,15 +149,13 @@ class RequestController extends Controller
         $query = null;
         if (!$model->load(Yii::$app->request->post())) {
             $model->product = '%';
-            $model->work = '%';
         }
         $query = (new Query())
             ->select('product.name as pname, work_prod.name as wname')
             ->from('prod_work')
             ->innerJoin('product', 'product.id = prod_work.id_product')
             ->innerJoin('work_prod', 'work_prod.id = prod_work.id_work')
-            ->where(['like', 'prod_work.id_work', $model->work, false])
-            ->andWhere(['like', 'prod_work.id_product', $model->product, false]);
+            ->where(['like', 'prod_work.id_product', $model->product, false]);
         $search = $query->all();
         return $this->render('req5', [
             'search' => $search,
@@ -245,9 +297,9 @@ class RequestController extends Controller
         $query = (new \yii\db\Query())
             ->select('product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
             ->from('lab_info')
-            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
-            ->leftJoin('product', 'product.id=lab_info.id_product')
-            ->leftJoin('category', 'category.id=product.id_category')
+            ->leftJoin('laboratory', 'laboratory.id = lab_info.id_lab')
+            ->leftJoin('product', 'product.id = lab_info.id_product')
+            ->leftJoin('category', 'category.id = product.id_category')
             ->where(['like', 'product.id_category', $model->category, false])
             ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
             ->andWhere(['>', 'lab_info.date_start', $model->sdate])
@@ -274,10 +326,10 @@ class RequestController extends Controller
         $query = (new \yii\db\Query())
             ->select('workers.fullname, product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
             ->from('lab_info')
-            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
-            ->leftJoin('product', 'product.id=lab_info.id_product')
-            ->leftJoin('category', 'category.id=product.id_category')
-            ->leftJoin('workers', 'workers.id=lab_info.id_workers')
+            ->leftJoin('laboratory', 'laboratory.id = lab_info.id_lab')
+            ->leftJoin('product', 'product.id = lab_info.id_product')
+            ->leftJoin('category', 'category.id = product.id_category')
+            ->leftJoin('workers', 'workers.id = lab_info.id_workers')
             ->where(['like', 'product.id_category', $model->category, false])
             ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
             ->andWhere(['>', 'lab_info.date_start', $model->sdate])
@@ -304,10 +356,10 @@ class RequestController extends Controller
         $query = (new \yii\db\Query())
             ->select('lab_quipment.name as qname, product.name as pname, category.name as cname, laboratory.name as lname, lab_info.date_start, lab_info.date_end')
             ->from('lab_info')
-            ->leftJoin('laboratory', 'laboratory.id=lab_info.id_lab')
-            ->leftJoin('product', 'product.id=lab_info.id_product')
-            ->leftJoin('category', 'category.id=product.id_category')
-            ->leftJoin('lab_quipment', 'lab_quipment.id=lab_info.id_quipment')
+            ->leftJoin('laboratory', 'laboratory.id = lab_info.id_lab')
+            ->leftJoin('product', 'product.id = lab_info.id_product')
+            ->leftJoin('category', 'category.id = product.id_category')
+            ->leftJoin('lab_quipment', 'lab_quipment.id = lab_info.id_quipment')
             ->where(['like', 'product.id_category', $model->category, false])
             ->andWhere(['like', 'lab_info.id_lab', $model->laboratory, false])
             ->andWhere(['>', 'lab_info.date_start', $model->sdate])
@@ -323,5 +375,29 @@ class RequestController extends Controller
     //14.Получить число и перечень изделий отдельной категории и в целом, собираемых указанным цехом, участком, предприятием в настоящее время. 
     public function actionReq14()
     {
+        $model = new Req14Form();
+        $query = null;
+        if (!$model->load(Yii::$app->request->post())) {
+            $model->category = '%';
+            $model->workshop = '%';
+            $model->company = '%';
+        }
+        $query = (new Query())
+            ->select('product.name as pname, log.count, category.name as cname, sector.name as sname, workshop.name as wname, company.name as coname, log.isReady')
+            ->from('log')
+            ->innerJoin('product', 'log.id_product = product.id')
+            ->innerJoin('category', 'product.id_category = category.id')
+            ->innerJoin('sector', 'sector.id = log.id_sector')
+            ->innerJoin('workshop', 'workshop.id = sector.id_workshop')
+            ->innerJoin('company', 'company.id = workshop.id_company')
+            ->where(['like', 'product.id_category', $model->category, false])
+            ->andWhere(['like', 'sector.id_workshop', $model->workshop, false])
+            ->andWhere(['like', 'workshop.id_company', $model->company, false])
+            ->andWhere(['like', 'isReady', '0', false]);
+        $search = $query->all();
+        return $this->render('req14', [
+            'search' => $search,
+            'model' => $model,
+        ]);
     }
 }

@@ -14,6 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_product')->textInput() ?>
 
+    <?= $form->field($model, 'count')->textInput() ?>
+
     <?= $form->field($model, 'id_sector')->textInput() ?>
 
     <?= $form->field($model, 'date_start')->textInput() ?>

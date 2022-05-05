@@ -17,7 +17,7 @@ class LogSearch extends Log
     public function rules()
     {
         return [
-            [['id', 'id_product', 'id_sector', 'isReady'], 'integer'],
+            [['id', 'id_product', 'count', 'id_sector', 'isReady'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class LogSearch extends Log
         $query->andFilterWhere([
             'id' => $this->id,
             'id_product' => $this->id_product,
+            'count' => $this->count,
             'id_sector' => $this->id_sector,
             'date_start' => $this->date_start,
             'date_end' => $this->date_end,

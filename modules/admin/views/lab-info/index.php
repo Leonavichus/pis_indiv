@@ -34,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_quipment',
             'id_workers',
             'id_lab',
-            //'date_start',
-            //'date_end',
+            'date_start',
+            'date_end',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, LabInfo $model, $key, $index, $column) {

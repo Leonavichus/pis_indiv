@@ -44,8 +44,8 @@ class BrigProd extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'id_workers' => 'Id Workers',
+            'id_product' => 'Изделие',
+            'id_workers' => 'Сотрудник',
         ];
     }
 

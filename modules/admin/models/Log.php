@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $id_product
+ * @property int $count
  * @property int $id_sector
  * @property string $date_start
  * @property string|null $date_end
@@ -33,8 +34,8 @@ class Log extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_product', 'id_sector', 'date_start'], 'required'],
-            [['id_product', 'id_sector', 'isReady'], 'integer'],
+            [['id_product', 'count', 'id_sector', 'date_start'], 'required'],
+            [['id_product', 'count', 'id_sector', 'isReady'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
             [['id_sector'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['id_sector' => 'id']],
             [['id_product'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['id_product' => 'id']],
@@ -48,11 +49,12 @@ class Log extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_product' => 'Id Product',
-            'id_sector' => 'Id Sector',
-            'date_start' => 'Date Start',
-            'date_end' => 'Date End',
-            'isReady' => 'Is Ready',
+            'id_product' => 'Изделие',
+            'count' => 'Кол-во',
+            'id_sector' => 'Участок',
+            'date_start' => 'Дата начала',
+            'date_end' => 'Дата конца',
+            'isReady' => 'Закончено',
         ];
     }
 

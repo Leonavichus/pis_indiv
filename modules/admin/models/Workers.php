@@ -51,10 +51,10 @@ class Workers extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fullname' => 'Fullname',
-            'id_post' => 'Id Post',
-            'id_sector' => 'Id Sector',
-            'id_brigade' => 'Id Brigade',
+            'fullname' => 'ФИО',
+            'id_post' => 'Должность',
+            'id_sector' => 'Участок',
+            'id_brigade' => 'Бригада',
         ];
     }
 

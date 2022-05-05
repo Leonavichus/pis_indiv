@@ -19,11 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_product') ?>
 
+    <?= $form->field($model, 'count') ?>
+
     <?= $form->field($model, 'id_sector') ?>
 
     <?= $form->field($model, 'date_start') ?>
 
-    <?= $form->field($model, 'date_end') ?>
+    <?php // echo $form->field($model, 'date_end') ?>
 
     <?php // echo $form->field($model, 'isReady') ?>
 
