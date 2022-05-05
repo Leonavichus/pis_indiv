@@ -122,16 +122,22 @@ class RequestController extends Controller
         }
 
         $query = (new Query())
-            ->select('workshop.name as wname, count(workshop.id) as spcount, company.name as cname, workers.fullname')->distinct()
+            ->select('workshop.id, workshop.name as wname, company.name as cname, workers.fullname')->distinct()
             ->from('workshop')
-            ->innerJoin('sector', 'workshop.id = sector.id_workshop')
-            ->innerJoin('company', 'workshop.id_company = company.id')
-            ->innerJoin('workers', 'workers.id_sector = sector.id')
+            ->leftJoin('sector', 'workshop.id = sector.id_workshop')
+            ->leftJoin('company', 'workshop.id_company = company.id')
+            ->leftJoin('workers', 'workers.id_sector = sector.id')
             ->where(['like', 'workers.id_post', 9, false])
             ->andWhere(['like', 'company.id', $model->company, false])
-            ->andWhere(['like', 'workshop.id', $model->workshop, false])
-            ->groupBy('workshop.name');
+            ->andWhere(['like', 'workshop.id', $model->workshop, false]);
 
+        $query2 = (new \yii\db\Query())
+            ->select('workshop.id, count(sector.name) as spcount')
+            ->from('workshop')
+            ->innerJoin('sector', 'workshop.id=sector.id_workshop')
+            ->groupBy('workshop.id');
+
+        $query->leftJoin(['w' => $query2], 'w.id=workshop.id')->addSelect('spcount');
         $helpquery = Sector::find()->all();
         $search = $query->all();
 
