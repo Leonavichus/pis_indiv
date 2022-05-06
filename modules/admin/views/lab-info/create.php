@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\LabInfo */
 
-$this->title = 'Create Lab Info';
-$this->params['breadcrumbs'][] = ['label' => 'Lab Infos', 'url' => ['index']];
+$this->title = 'Сохранить';
+$this->params['breadcrumbs'][] = ['label' => 'Журнал лабораторий', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lab-info-create">

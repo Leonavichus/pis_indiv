@@ -10,7 +10,7 @@ use app\modules\admin\models\Log;
 /* @var $searchModel app\modules\admin\models\LogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Logs';
+$this->title = 'Журрнал';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="log-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Log', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -31,9 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_product',
+            // 'id_product',
+            [
+                'attribute' => 'id_product',
+                'value' => function ($data) {
+                    return $data->product->name;
+                }
+            ],
             'count',
-            'id_sector',
+            // 'id_sector',
+            [
+                'attribute' => 'id_sector',
+                'value' => function ($data) {
+                    return $data->sector->name;
+                }
+            ],
             'date_start',
             'date_end',
             'isReady',

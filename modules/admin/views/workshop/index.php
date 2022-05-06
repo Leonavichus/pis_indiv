@@ -10,7 +10,7 @@ use app\modules\admin\models\Workshop;
 /* @var $searchModel app\modules\admin\models\WorkshopSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Workshops';
+$this->title = 'Цех';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workshop-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Workshop', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -32,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'id_company',
+            // 'id_company',
+            [
+                'attribute' => 'id_company',
+                'value' => function ($data) {
+                    return $data->company->name;
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Workshop $model, $key, $index, $column) {

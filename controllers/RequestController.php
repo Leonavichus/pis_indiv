@@ -137,7 +137,7 @@ class RequestController extends Controller
             ->innerJoin('sector', 'workshop.id=sector.id_workshop')
             ->groupBy('workshop.id');
 
-        $query->leftJoin(['w' => $query2], 'w.id=workshop.id')->addSelect('spcount');
+        $query->leftJoin(['w' => $query2], 'w.id = workshop.id')->addSelect('spcount');
         $helpquery = Sector::find()->all();
         $search = $query->all();
 

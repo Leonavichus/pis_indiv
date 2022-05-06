@@ -10,7 +10,7 @@ use app\modules\admin\models\Laboratory;
 /* @var $searchModel app\modules\admin\models\LaboratorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Laboratories';
+$this->title = 'Лаборатория';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="laboratory-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Laboratory', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 

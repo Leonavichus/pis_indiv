@@ -9,7 +9,7 @@ use app\modules\admin\models\LabInfo;
 /* @var $searchModel app\modules\admin\models\LabInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Lab Infos';
+$this->title = 'Журнал лабораторий';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lab-info-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Lab Info', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -30,10 +30,34 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_product',
-            'id_quipment',
-            'id_workers',
-            'id_lab',
+            // 'id_product',
+            [
+                'attribute' => 'id_product',
+                'value' => function ($data) {
+                    return $data->product->name;
+                }
+            ],
+            // 'id_quipment',
+            [
+                'attribute' => 'id_quipment',
+                'value' => function ($data) {
+                    return $data->quipment->name;
+                }
+            ],
+            // 'id_workers',
+            [
+                'attribute' => 'id_workers',
+                'value' => function ($data) {
+                    return $data->workers->fullname;
+                }
+            ],
+            // 'id_lab',
+            [
+                'attribute' => 'id_lab',
+                'value' => function ($data) {
+                    return $data->lab->name;
+                }
+            ],
             'date_start',
             'date_end',
             [

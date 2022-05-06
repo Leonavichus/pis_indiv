@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\LabQuipment */
 
-$this->title = 'Create Lab Quipment';
-$this->params['breadcrumbs'][] = ['label' => 'Lab Quipments', 'url' => ['index']];
+$this->title = 'Создать';
+$this->params['breadcrumbs'][] = ['label' => 'Оборудование', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lab-quipment-create">

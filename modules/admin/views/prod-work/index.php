@@ -10,7 +10,7 @@ use app\modules\admin\models\ProdWork;
 /* @var $searchModel app\modules\admin\models\ProdWorkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Prod Works';
+$this->title = 'Работа по изделию';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="prod-work-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Prod Work', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -31,9 +31,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_product',
-            'id_work',
-            'id_sector',
+            // 'id_product',
+            [
+                'attribute' => 'id_product',
+                'value' => function ($data) {
+                    return $data->product->name;
+                }
+            ],
+            // 'id_work',
+            [
+                'attribute' => 'id_work',
+                'value' => function ($data) {
+                    return $data->work->name;
+                }
+            ],
+            // 'id_sector',
+            [
+                'attribute' => 'id_sector',
+                'value' => function ($data) {
+                    return $data->sector->name;
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, ProdWork $model, $key, $index, $column) {
