@@ -17,7 +17,9 @@ class SectorSearch extends Sector
     public function rules()
     {
         return [
-            [['id', 'name', 'id_workshop'], 'integer'],
+            [['id'], 'integer'],
+            [['name'], 'string'],
+
         ];
     }
 

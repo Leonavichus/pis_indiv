@@ -1,7 +1,9 @@
 <?php
 
+use app\modules\admin\models\Product;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\BrigProd */
@@ -12,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_product')->textInput() ?>
+    <?= $form->field($model, 'id_product')->dropDownList(ArrayHelper::map(Product::find()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'id_workers')->textInput() ?>
 

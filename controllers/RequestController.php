@@ -131,7 +131,7 @@ class RequestController extends Controller
             ->andWhere(['like', 'company.id', $model->company, false])
             ->andWhere(['like', 'workshop.id', $model->workshop, false]);
 
-        $query2 = (new \yii\db\Query())
+        $query2 = (new Query())
             ->select('workshop.id, count(sector.name) as spcount')
             ->from('workshop')
             ->innerJoin('sector', 'workshop.id=sector.id_workshop')
